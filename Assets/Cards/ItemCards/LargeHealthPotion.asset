@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f538527c08e749245b160ab1784dae9a, type: 3}
+  m_Name: LargeHealthPotion
+  m_EditorClassIdentifier: 
+  name: Large Health Potion
+  effect: Stay 1 turn longer, return 2 more Loot
+  flavourText: Basically a doctor in a bottle
+  artwork: {fileID: 21300000, guid: 6b428a149d4d21d4f94169745ef3e6bb, type: 3}
+  baseColor: {fileID: 21300000, guid: 5b29d3d058535a943a0ae9e01c3d88ba, type: 3}
+  attackDamage: 0
+  armor: 0
+  value: 65
+  duration: 0
+  extraLoot: 0
+  extraChoose: 0
+  numGoodCards: 0
+  numBestCards: 0
+  knightProf: 0
+  archerProf: 0
+  wizardProf: 0
+  monkProf: 0

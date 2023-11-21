@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f538527c08e749245b160ab1784dae9a, type: 3}
+  m_Name: MetalHelmet
+  m_EditorClassIdentifier: 
+  name: Metal Helmet
+  effect: Returns 1 more Loot
+  flavourText: Look, free Hands!
+  artwork: {fileID: 21300000, guid: 4d310cdcf9502a54bbd0f758825aa899, type: 3}
+  baseColor: {fileID: 21300000, guid: 1160209cc59945240966d734c380811f, type: 3}
+  attackDamage: 0
+  armor: 2
+  value: 40
+  duration: 0
+  extraLoot: 1
+  extraChoose: 0
+  numGoodCards: 0
+  numBestCards: 0
+  knightProf: 0
+  archerProf: 0
+  wizardProf: 0
+  monkProf: 0
