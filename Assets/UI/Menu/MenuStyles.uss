@@ -1,0 +1,57 @@
+.button {
+    -unity-font: resource('Fonts & Materials/gothicPixel');
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+    width: 20%;
+    min-width: 79px;
+    background-image: url('project://database/Assets/UI/Menu/menuButton.png?fileID=2800000&guid=20c9bd81042df1d4e836b106ce9d0e33&type=3#menuButton');
+    -unity-slice-left: 6;
+    -unity-slice-top: 6;
+    -unity-slice-right: 6;
+    -unity-slice-bottom: 6;
+    -unity-font-definition: initial;
+    font-size: 20px;
+    min-height: 29px;
+    color: rgb(62, 53, 70);
+}
+
+.menuBG {
+    flex-grow: 1;
+    background-image: url('project://database/Assets/UI/Menu/Scroll.png?fileID=2800000&guid=901c46fc2e21f8e4d9910b8ae4e536c2&type=3#Scroll');
+    display: none;
+}
+
+.buttonGroup {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.title {
+    align-items: auto;
+    -unity-text-align: upper-center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    -unity-font-style: normal;
+    font-size: 40px;
+    -unity-font: resource('Fonts & Materials/gothicPixel');
+    -unity-font-definition: initial;
+    color: rgb(62, 53, 70);
+}
+
+.titleBox {
+    flex-grow: 1;
+    max-height: 30%;
+    justify-content: flex-end;
+}
+
+.tutorialTextGroup {
+    flex-grow: 1;
+    display: flex;
+    margin-top: 15%;
+    align-self: flex-end;
+    margin-right: 15%;
+    align-items: auto;
+    width: 70%;
+}

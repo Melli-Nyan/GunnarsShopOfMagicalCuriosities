@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Menu/MenuStyles.uss?fileID=7433441132597879392&amp;guid=0bcd8318a31f08d4e98be61549e8f477&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="overlay" style="flex-grow: 1; align-items: flex-end; display: flex; visibility: visible; align-self: flex-end; height: auto; max-height: 20%;">
+        <ui:Button text="Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="menuButton" class="button" style="align-items: auto; right: 0; top: 0; margin-top: 20px; margin-right: 170px; width: 100px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="menu" class="menuBG" style="display: none;">
+        <ui:VisualElement name="gametitleBox" class="titleBox">
+            <ui:Label tabindex="-1" text="Gunnar&apos;s Shop of Magical Curiosities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="gametitel" class="title" />
+        </ui:VisualElement>
+        <ui:VisualElement name="item" style="flex-grow: 1; display: none;" />
+        <ui:VisualElement name="menuButtonGroup" class="buttonGroup" style="flex-grow: 1; -unity-font: resource(&apos;Fonts &amp; Materials/gothicPixel&apos;); display: flex;">
+            <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playButton" class="button" style="-unity-font-definition: initial; font-size: 18px;" />
+            <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="restartButton" class="button" style="-unity-font-definition: initial;" />
+            <ui:Button text="Tutorial" parse-escape-sequences="true" display-tooltip-when-elided="true" name="tutorialButton" class="button" style="height: 40px; -unity-font-definition: initial;" />
+            <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="exitButton" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="tutorial" class="menuBG" style="display: none;">
+        <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; min-width: auto; min-height: auto; margin-top: 10%; margin-right: 15%; margin-bottom: 10%; margin-left: 15%;">
+            <ui:VisualElement name="tutorialGroup" class="tutorialTextGroup" style="margin-left: 0; flex-direction: row; margin-top: 0; margin-right: 0; margin-bottom: 20px; width: 100%;">
+                <ui:VisualElement style="flex-grow: 1; margin-right: 10px; background-image: url(&apos;project://database/Assets/UI/Menu/Card.png?fileID=2800000&amp;guid=055df11d0388bde4692aa95d80f42ed8&amp;type=3#Card&apos;); align-self: flex-start; min-width: 60px; min-height: 90px; width: 30%; justify-content: center; height: auto;">
+                    <ui:VisualElement name="card" style="flex-grow: 1; height: 100%; width: 100%; min-width: 60px; min-height: 90px; position: relative; left: 0; top: 0; right: 0; bottom: 0; align-items: center; justify-content: center; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Equip the Adventurers with Items and they will bring you part of their Loot, which you can then add to your stock.&#10;&#10;Adventurers can be Fighters, Archers, or Wizards, who all need different weapons. The Adventurers will also tell you the requirements for their next quest. You can see the Attack and Defense points on the bottom of your item card. So make sure to pick the right weapon for everyone.&#10;&#10;Other Items might grant you spezial effects that could result in more or better quality Loot. You can estimate the quality from the price that is on the top of your Item Card.&#10;&#10; Once you have decided the best Items for the Adventurer, you can put them in the Adventurer&apos;s item slots, send them on their way, and ring the Bell for your next customer.&#10;&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: resource(&apos;Fonts &amp; Materials/gothicPixel&apos;); -unity-font-definition: initial; font-size: 20px; white-space: normal; margin-left: 10px; align-self: flex-end; width: 70%; text-overflow: clip;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="tutorialButtonGroup" class="buttonGroup" style="height: auto; max-height: none;">
+                <ui:Button text="Return" parse-escape-sequences="true" display-tooltip-when-elided="true" name="returnButton" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
