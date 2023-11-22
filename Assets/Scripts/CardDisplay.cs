@@ -40,8 +40,10 @@ public class CardDisplay : MonoBehaviour
         nameText.text = card.name;
         effectText.text = card.effect;
         flavourText.text = card.flavourText;
-        if(card.armor != 0) armorText.text = card.armor.ToString();
-        if(card.attackDamage != 0) attackText.text = card.attackDamage.ToString();
+        armorText.text = card.armor.ToString();
+        if (card.armor == 0) armorText.text = "";
+        attackText.text = card.attackDamage.ToString();
+        if (card.attackDamage == 0) attackText.text = "";
         valueText.text = card.value.ToString();
 
         artworkImage.sprite = card.artwork;

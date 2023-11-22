@@ -34,7 +34,7 @@ public class DungeonManager : MonoBehaviour
 
     public int chooseAmount;
 
-    public bool attackReached;
+    public bool attackReached, lootInOperation;
 
     public TMP_Text counter;
 
@@ -65,6 +65,7 @@ public class DungeonManager : MonoBehaviour
             card3 = gear3.GetComponent<CardSlot>().slottedCard.GetComponent<CardDisplay>().card;
             Destroy(gear3.GetComponent<CardSlot>().slottedCard);
         }
+        
     }
 
     public void beginDungeoneering() {
@@ -103,16 +104,16 @@ public class DungeonManager : MonoBehaviour
 
         switch (counterCharacterType) {
             case "Archer":
-                quest.GetComponent<QuestDisplay>().SetAvatar(archerHead);
+                quest.GetComponent<QuestDisplay>().SetAvatar(archerHead, counterCharacterType);
                 break;
             case "Knight":
-                quest.GetComponent<QuestDisplay>().SetAvatar(knightHead);
+                quest.GetComponent<QuestDisplay>().SetAvatar(knightHead, counterCharacterType);
                 break;
             case "Wizard":
-                quest.GetComponent<QuestDisplay>().SetAvatar(wizardHead);
+                quest.GetComponent<QuestDisplay>().SetAvatar(wizardHead, counterCharacterType);
                 break;
             case "Monk":
-                quest.GetComponent<QuestDisplay>().SetAvatar(monkHead);
+                quest.GetComponent<QuestDisplay>().SetAvatar(monkHead, counterCharacterType);
                 break;
             default:
                 break;
@@ -148,12 +149,29 @@ public class DungeonManager : MonoBehaviour
                     break;
             }
             activeQuests[i] = null;
-            payoutQuest(quest);
-            Destroy(quest);
+            quest.GetComponent<QuestDisplay>().duration--;
+            Debug.Log(lootInOperation);
+            StartCoroutine(TryPayout(quest));
         }
     }
 
-    public void payoutQuest(GameObject quest) {
+    IEnumerator TryPayout(GameObject quest)
+    {
+        if (lootInOperation)
+        {
+            yield return new WaitForSeconds(0.2f);
+            StartCoroutine(TryPayout(quest));
+        }
+        else
+        {
+            payoutQuest(quest);
+        }
+    }
+
+    public void payoutQuest(GameObject quest)
+    {
+        Debug.Log("inPayout");
+        lootInOperation = true;
         window.GetComponent<Animator>().SetTrigger("Open");
         window.GetComponent<Animator>().SetTrigger("Arrive");
 
@@ -169,9 +187,14 @@ public class DungeonManager : MonoBehaviour
         counter.text = chooseAmount.ToString();
 
 
-        if(!attackReached) {
+        if(attackDamage < 2) {
 
             cardsRewarded /= 2;
+        }
+
+        if (attackDamage > 4)
+        {
+            cardsRewarded *= 2;
         }
 
         for(int i = 0; i <= 8; i++) {
@@ -201,17 +224,17 @@ public class DungeonManager : MonoBehaviour
                     if(r > 8) {
 
                         joe = Random.Range(0, bestLoot.Count);
-                        lootCards[i].GetComponent<CardDisplay>().updateCard(bestLoot[i]);
+                        lootCards[i].GetComponent<CardDisplay>().updateCard(bestLoot[joe]);
 
                     } else if(r > 4) {
 
                         joe = Random.Range(0, goodLoot.Count);
-                        lootCards[i].GetComponent<CardDisplay>().updateCard(goodLoot[i]);
+                        lootCards[i].GetComponent<CardDisplay>().updateCard(goodLoot[joe]);
 
                     } else {
 
                         joe = Random.Range(0, normalLoot.Count);
-                        lootCards[i].GetComponent<CardDisplay>().updateCard(normalLoot[i]);
+                        lootCards[i].GetComponent<CardDisplay>().updateCard(normalLoot[joe]);
                     }
                 }
 
@@ -222,6 +245,7 @@ public class DungeonManager : MonoBehaviour
         
         inputBlockCanvas.SetActive(true);
         StartCoroutine(WaitForBirdArrive());
+        Destroy(quest);
     }
 
     IEnumerator WaitForBirdArrive() {
@@ -237,7 +261,7 @@ public class DungeonManager : MonoBehaviour
 
     public void chooseLoot() {
         Debug.Log(chooseAmount);
-        if(selectedCards.Count < chooseAmount) {
+        if(selectedCards.Count <= chooseAmount) {
             deck.GetComponent<Deck>().drawOrder.AddRange(selectedCards);
             deck.GetComponent<Deck>().shuffleDeck();
 
@@ -257,6 +281,13 @@ public class DungeonManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         window.GetComponent<Animator>().SetTrigger("Close");
+
+        lootInOperation = false;
+
+        foreach (var card in lootCards)
+        {
+            card.GetComponent<Select>().Deselect();
+        }
     }
 
     public int calcDuration(Card card1, Card card2, Card card3) {
@@ -272,21 +303,21 @@ public class DungeonManager : MonoBehaviour
         
         if(quest.GetComponent<QuestDisplay>().card1 != null) {
             int tempAttack = quest.GetComponent<QuestDisplay>().card1.attackDamage;
-            if(!checkTypematch(card1, counterCharacterType)) {
+            if(!checkTypematch(quest.GetComponent<QuestDisplay>().card1, quest.GetComponent<QuestDisplay>().characterType)) {
                 tempAttack /= 2;
             }
             attackDamage += tempAttack;
         }
         if(quest.GetComponent<QuestDisplay>().card2 != null) {
             int tempAttack = quest.GetComponent<QuestDisplay>().card2.attackDamage;
-            if(!checkTypematch(card2, counterCharacterType)) {
+            if(!checkTypematch(quest.GetComponent<QuestDisplay>().card2, quest.GetComponent<QuestDisplay>().characterType)) {
                 tempAttack /= 2;
             }
             attackDamage += tempAttack;
         }
         if(quest.GetComponent<QuestDisplay>().card3 != null) {
             int tempAttack = quest.GetComponent<QuestDisplay>().card3.attackDamage;
-            if(!checkTypematch(card3, counterCharacterType)) {
+            if(!checkTypematch(quest.GetComponent<QuestDisplay>().card3, quest.GetComponent<QuestDisplay>().characterType)) {
                 tempAttack /= 2;
             }
             attackDamage += tempAttack;
@@ -304,25 +335,20 @@ public class DungeonManager : MonoBehaviour
                     if(card.knightProf) {
                         return true;
                     } else return false;
-                    break;
                 case "Archer":
                     if(card.archerProf) {
                         return true;
                     } else return false;
-                    break;
                 case "Wizard":
                     if(card.wizardProf) {
                         return true;
                     } else return false;
-                    break;
                 case "Monk":
                     if(card.monkProf) {
                         return true;
                     } else return false;
-                    break;
                 default:
                     return true;
-                    break;
         }
 
     }

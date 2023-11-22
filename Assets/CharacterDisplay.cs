@@ -41,7 +41,7 @@ public class CharacterDisplay : MonoBehaviour
                 footstepsStarted = true;
             }
             if(Vector3.Distance(GetComponent<RectTransform>().anchoredPosition, queueSlot.GetComponent<RectTransform>().anchoredPosition) > 0.1f) {
-                GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, queueSlot.GetComponent<RectTransform>().anchoredPosition, 200 * walkSpeed * Time.deltaTime);
+                GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, queueSlot.GetComponent<RectTransform>().anchoredPosition, 400 * walkSpeed * Time.deltaTime);
             } else {
                 arrivedAtSlot = true;
                 SoundManager.StopFootsteps();

@@ -13,6 +13,8 @@ public class QuestDisplay : MonoBehaviour
 
     public int slot, duration, lootCount, lootChooseCount;
 
+    public string characterType;
+
     public void SetDuration(int initialDuration) {
         duration = initialDuration;
         counterText.text = duration.ToString();
@@ -24,8 +26,10 @@ public class QuestDisplay : MonoBehaviour
         this.card3 = card3;
     }
 
-    public void SetAvatar(Sprite headSprite) {
+    public void SetAvatar(Sprite headSprite, string charType) {
         headImage.sprite = headSprite;
+
+        characterType = charType;
     }
 
     

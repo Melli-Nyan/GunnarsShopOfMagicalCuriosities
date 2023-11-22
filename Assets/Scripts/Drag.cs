@@ -21,7 +21,7 @@ public class Drag : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IB
 
     private void Update() {
         if(dropped) {
-            GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, slot.GetComponent<RectTransform>().anchoredPosition, 200 * snapSpeed * Time.deltaTime);
+            GetComponent<RectTransform>().anchoredPosition = Vector3.MoveTowards(GetComponent<RectTransform>().anchoredPosition, slot.GetComponent<RectTransform>().anchoredPosition, 400 * snapSpeed * Time.deltaTime);
         }
         
     }

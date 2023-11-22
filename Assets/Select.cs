@@ -47,8 +47,13 @@ public class Select : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
     public void Deselect() {
-        selected = false;
-        GetComponent<Outline>().enabled = false;
+        if (selected == true)
+        {
+            selected = false;
+            GetComponent<Outline>().enabled = false;
+            selectedCount.text = (int.Parse(selectedCount.text) - 1).ToString();
+        }
+        
     }
 
 }
